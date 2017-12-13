@@ -2,6 +2,8 @@ require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/user'
+require './lib/joke'
+require 'pry'
 
 class UserTest < Minitest::Test
   def test_it_exists
@@ -20,5 +22,22 @@ class UserTest < Minitest::Test
     ali = User.new("Ali")
 
     assert_equal "Ali", ali.name
+  end
+
+  def test_joke
+    joke = Joke.new({id: 1, question: "Why did the strawberry cross the road?", answer: "Because his mother was in a jam."})
+    assert_equal "Why did the strawberry cross the road?", joke.question
+  end
+
+  def test_sal_jokes
+    sal = User.new("Sal")
+    assert_equal [], sal.jokes
+  end
+
+  def test_learn_joke
+    sal = User.new("Sal")
+
+    sal.learn(joke)
+
   end
 end
